@@ -42,7 +42,7 @@
             color: #7f8c8d;
         }
 
-        input[type="email"], input[type="password"] {
+        input[type="email"], input[type="text"], textarea {
             width: 100%;
             padding: 0.75rem;
             margin-bottom: 1rem;
@@ -70,17 +70,23 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>Bienvenido</h1>
-        <p>Por favor ingrese algunos datos para continuar con el alquiler.</p>
-        <form>
+        <h1>Formulario de Alquiler</h1>
+        <form action="procesar_alquiler.php" method="POST">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required placeholder="Ingrese su nombre">
+
             <label for="email">Correo Electrónico</label>
             <input type="email" id="email" name="email" required placeholder="Correo electrónico">
 
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" required placeholder="Contraseña">
+            <label for="casa">Casa de Interés</label>
+            <input type="text" id="casa" name="casa" required placeholder="Casa que le interesa">
 
-            <button type="submit">Enviar</button>
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Escriba su mensaje aquí..."></textarea>
+
+            <button type="submit">Enviar Consulta</button>
         </form>
     </div>
 </body>
 </html>
+

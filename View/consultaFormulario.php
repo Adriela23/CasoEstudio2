@@ -86,6 +86,7 @@
 <body>
     <div class="form-container">
         <h1>Consulta sobre la Casa</h1>
+        <!-- Aquí se cambia la acción del formulario para que envíe los datos a procesar_consulta.php -->
         <form action="procesar_consulta.php" method="POST">
             <label for="name">Nombre</label>
             <input type="text" id="name" name="name" required placeholder="Ingrese su nombre">
