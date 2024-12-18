@@ -18,6 +18,38 @@ require_once 'BaseDatos.php';
         }
     }
 
+    function casasDisponibles() {
+        try{
+            $enlace = AbrirBD();
+
+            $sentencia = "CALL CasasDisponibles()";
+            $resultado = $enlace -> query($sentencia);
+
+            CerrarBD($enlace);
+            return $resultado;
+        }
+        catch (Exception $ex)
+        {
+            return null;
+        }
+    }
+
+    public function alquilarCasa() {
+        try{
+            $enlace = AbrirBD();
+
+            $sentencia = "CALL AlquilarCasa()";
+            $resultado = $enlace -> query($sentencia);
+
+            CerrarBD($enlace);
+            return $resultado;
+        }
+        catch (Exception $ex)
+        {
+            return null;
+        }
+    }
+
 
 ?>
 
