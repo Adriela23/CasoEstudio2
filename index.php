@@ -98,7 +98,7 @@
         <p>¿Desea consultar una casa o alquilar una casa?</p>
         <div class="buttons">
             <a href="View/consultarCasa.php">Consultar una Casa</a>
-            <a href="View/alquilerCasa.php" class="alquilar">Alquilar una Casa</a>
+            <a href="View/alquilarCasa.php" class="alquilar">Alquilar una Casa</a>
         </div>
     </div>
 </body>
