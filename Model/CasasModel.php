@@ -1,12 +1,12 @@
 <?php
 require_once 'BaseDatos.php';
 
-    function consultarCasas($minPrecio, $maxPrecio)
+    function consultarPrecioCasasModel($minPrecio, $maxPrecio)
     {
         try{
             $enlace = AbrirBD();
 
-            $sentencia = "CALL ConsultarCasas($minPrecio, $maxPrecio)";
+            $sentencia = "CALL ConsultarPrecioCasas($minPrecio, $maxPrecio)";
             $resultado = $enlace -> query($sentencia);
 
             CerrarBD($enlace);
@@ -18,7 +18,7 @@ require_once 'BaseDatos.php';
         }
     }
 
-    function casasDisponibles() {
+    function casasDisponiblesModel() {
         try{
             $enlace = AbrirBD();
 
@@ -34,22 +34,22 @@ require_once 'BaseDatos.php';
         }
     }
 
-    public function alquilarCasa() {
-        try{
+    function AlquilarCasaModel($consecutivo)
+    {
+        try
+        {
             $enlace = AbrirBD();
 
-            $sentencia = "CALL AlquilarCasa()";
+            $sentencia = "CALL AlquilarCasa('$consecutivo')";
             $resultado = $enlace -> query($sentencia);
 
             CerrarBD($enlace);
             return $resultado;
         }
-        catch (Exception $ex)
+        catch(Exception $ex)
         {
-            return null;
+            return false;
         }
     }
-
-
 ?>
 

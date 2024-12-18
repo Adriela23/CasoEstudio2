@@ -1,29 +1,42 @@
 <?php
-require_once 'Model/CasasModel.php';
+require_once 'model/CasasModel.php';
 
-class CasasController {
-    public function consultar() {
-        $model = new CasasModel();
-        $casas = $model->obtenerCasas();
-        require 'View/consultarCasa.php';
+    if(session_status() == PHP_SESSION_NONE) {
+    session_start();
     }
 
-    public function alquilar() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $idCasa = $_POST['IdCasa'];
-            $usuario = $_POST['UsuarioAlquiler'];
-            $fecha = date('Y-m-d H:i:s');
+    function casasDisponibles()
+    {
+        return casasDisponiblesModel();
+    }
 
-            if (!empty($usuario)) {
-                $model = new CasasModel();
-                $model->alquilarCasa($idCasa, $usuario, $fecha);
-                header('Location: index.php?action=consultar');
-                exit;
-            }
+    if(isset($_POST["btnAlquilarCasa"]))
+    {
+        $consecutivo = $_POST["txtConsecutivo"];
+
+        $resultado = AlquilarCasaModel($consecutivo);
+        
+        if($resultado == true)
+        {
+            header('location: ../../View/alquilarCasa.php');
         }
-        $model = new CasasModel();
-        $casasDisponibles = $model->obtenerCasasDisponibles();
-        require 'View/alquilerCasa.php';
+        else
+        {
+            $_POST["txtMensaje"] = "No fue posible alquilar esta casa, intente de nuevo";
+        }
     }
-}
+
+    function consultarPrecioCasas(){
+        $minPrecio = $_GET['minPrecio'] ?? 115000;
+        $maxPrecio = $_GET['maxPrecio'] ?? 180000;
+
+        $casas = consultarPrecioCasasModel($minPrecio, $maxPrecio);
+
+        if ($casas) {
+            require 'View/consultarCasa.php';
+        } else {
+            $_POST["txtMensaje"] = "Error al consultar las casas";
+        }
+    }
 ?>
+
